@@ -1,14 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to The best Online News Website</title>
-        {% endif %}
-    </head>
-    <body>
-
-    </body>
-</html>
+{% extends 'base.html' %} {% import 'macros.html' as macro %} {% block content%}
+<div class="container">
+  <h1 class="text-center my-3">All sources</h1>
+  <div class="row">
+    {%for source in sources%}
+    <div class="col-md-4 col-sm-6 d-flex">
+      <div class="card mb-4 flex-fill">
+        <div class="card-body">
+          {{ macro.categoryBadge(source.category) }}
+          <h2 class="card-title">{{ source.name }}</h2>
+          <p class="card-text">{{ source.description }}</p>
+          <a
+            href="/articles/{{source.id}}"
+            class="card-link btn btn-outline-info"
+            >View articles</a
+          >
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{% endblock %}
